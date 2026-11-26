@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://biojuho.github.io/joolife-go/sitemap.xml

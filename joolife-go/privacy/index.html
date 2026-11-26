@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개인정보처리방침 — JooLife</title>
+<meta name="description" content="JooLife(joolife.io.kr) 및 생활계산서의 개인정보보호법 제30조 기준 개인정보처리방침 및 행태정보 옵트아웃 안내입니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://biojuho.github.io/joolife-go/privacy/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/joolife-go/assets/css/design_system_v2.css">
+</head>
+<body data-pixel="off">
+<div class="wrap">
+  <header class="top-bar">
+    <a class="brand" href="/joolife-go/go/"><span class="brand-dot">J</span> JooLife</a>
+    <span class="ad-pill">개인정보처리방침</span>
+  </header>
+  <section class="card">
+    <span class="kicker">개인정보보호법 제30조 기준 · 시행일 2026-11-26</span>
+    <h1>JooLife 개인정보처리방침</h1>
+    <p class="lead">JooLife(이하 "운영자", joolife.io.kr 및 biojuho.github.io/life-calculator)는 이용자의 개인정보를 직접 수집하지 않는 것을 원칙으로 하며, 비식별 방문 통계와 제휴 연결 처리 기준을 투명하게 공개합니다.</p>
+
+    <h2 style="margin:18px 0 8px">1. 수집하지 않는 항목 (직접 개인정보 0건)</h2>
+    <p>운영자는 성명, 전화번호, 이메일, 주민등록번호, 주소 및 페이지 내 퀴즈·계산기 입력값(채무액·연체 여부·신용·소득 등)을 운영자 서버에 수집·저장하지 않습니다. 퀴즈와 계산은 이용자 브라우저 안에서만 처리됩니다.</p>
+
+    <h2 style="margin:18px 0 8px">2. 비식별 통계·로컬 식별자·제3자 리소스 처리</h2>
+    <p>서비스 품질 개선과 제휴 정산 검증을 위해 다음 비식별 항목만 집계합니다: 페이지 경로, 유입 도메인(UTM), 기기 유형(모바일/PC), 세션 무작위 ID(<code>sessionStorage</code>), 단계 번호(응답값 제외), 버튼 클릭 수, 제휴 연결용 임의 클릭 ID(<code>lc_cid</code>), A/B 화면 일관성 유지용 영속 비식별 ID(<code>localStorage</code>의 <code>lc_ab_uid</code>), 광고 클릭 ID(<code>gclid</code>·<code>fbclid</code> 등). 운영자 DB는 이용자 IP 주소를 저장하지 않습니다. 다만 웹 통신 구조상 호스팅(Netlify·GitHub Pages)과 정적 웹폰트 CDN(jsDelivr) 서버에 접속 IP·브라우저 헤더가 일시 처리될 수 있습니다.</p>
+
+    <h2 style="margin:18px 0 8px">3. 개인정보 처리위탁·국외이전 및 제휴사 전환 회신</h2>
+    <p>비식별 통계·정산 기록 저장을 위해 클라우드 데이터베이스(Supabase Inc., 미국·싱가포르 리전)를 이용합니다(처리위탁 및 국외이전, 비식별 식별자만 보관하며 직접 개인정보는 저장하지 않습니다). 이용자가 제휴 링크로 이동해 제휴사에 상담을 신청하면 해당 제휴사의 개인정보처리방침이 적용되며, 제휴 네트워크는 정산 확인을 위해 임의 클릭 ID(<code>lc_cid</code>)에 대응하는 승인·반려 상태와 정산액만 서버 간 통신(S2S Postback)으로 운영자에게 회신합니다.</p>
+
+    <h2 style="margin:18px 0 8px">4. 맞춤형 광고·행태정보·로컬 식별자 차단(옵트아웃) 방법</h2>
+    <p>개인회생·법률 등 민감 분야 페이지에서는 외부 광고 플랫폼 픽셀을 일절 실행하지 않습니다. 일반 페이지에서도 브라우저의 <strong>Do Not Track(DNT)</strong> 또는 <strong>Global Privacy Control(GPC)</strong>을 켜면 비식별 통계·픽셀 전송을 즉시 중단합니다. <code>localStorage</code>의 <code>lc_ab_uid</code>는 브라우저 설정 &gt; 사이트 데이터 삭제에서 언제든 지울 수 있으며, 모바일 기기에서는 iOS(설정 &gt; 개인정보 보호 &gt; 추적 차단), Android(설정 &gt; Google &gt; 광고 &gt; 광고 ID 삭제)로 행태정보 수집을 차단할 수 있습니다.</p>
+
+    <h2 style="margin:18px 0 8px">5. 보유 기간 및 자동 파기</h2>
+    <p>비식별 통계 로그(<code>lc_events_v2</code>)는 월별 파티션으로 저장되며, 수집일로부터 12개월이 지나 해당 월 파티션 전체가 만료되면 매월 1일 자동 스케줄(<code>pg_cron</code> <code>maintain_lc_events_v2_partitions</code>)로 영구 삭제합니다. 월 단위 파티션 구조상 가장 오래된 행은 최대 약 13개월까지 남을 수 있습니다.</p>
+
+    <h2 style="margin:18px 0 8px">6. 정보주체의 권리 및 개인정보 보호책임자</h2>
+    <p>이용자는 언제든 비식별 통계 중단, 쿠키·로컬스토리지 삭제, 문의 및 열람·삭제 요청을 할 수 있습니다.</p>
+    <div class="callout info" style="margin-top:10px">
+      <strong>개인정보 보호책임자:</strong> JooLife 운영자 (박주호)<br>
+      <strong>소재지:</strong> 경기도 안양시 동안구<br>
+      <strong>이메일:</strong> <a href="mailto:biojuho@gmail.com">biojuho@gmail.com</a>
+    </div>
+  </section>
+  <footer class="site-foot">
+    <p><a href="/joolife-go/go/">← 전체 안내 목록으로 돌아가기</a></p>
+  </footer>
+</div>
+</body>
+</html>

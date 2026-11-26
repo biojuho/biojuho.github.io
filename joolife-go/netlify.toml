@@ -1,0 +1,34 @@
+# JooLife Netlify Production Config (v2.2)
+# - Canonical apex redirect (www.joolife.io.kr -> joolife.io.kr) prevents CORS/Origin 403.
+# - Same-origin telemetry proxy (/api/track -> Supabase lc-track) prevents ad-blocker loss.
+# - Security headers & strict asset caching.
+
+[[redirects]]
+  from = "https://www.joolife.io.kr/*"
+  to = "https://joolife.io.kr/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/api/track"
+  to = "https://oeoboplyxfnuiireeoiy.supabase.co/functions/v1/lc-track"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/go/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300, must-revalidate"
